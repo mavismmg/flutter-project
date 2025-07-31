@@ -1,0 +1,29 @@
+name: stacked_flutter_project
+description: A Flutter project using the Stacked architecture.
+
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  stacked: ^3.4.0
+  stacked_core: ^1.0.0
+  fl_chart: ^0.66.0
+  google_fonts: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.2.0
+  stacked_generator: ^1.6.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - lib/assets/images/welcome_page_bipo.png
