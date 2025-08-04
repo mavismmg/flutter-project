@@ -3,8 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'ui/views/home/home_view.dart';
+import 'ui/views/register/register_view.dart';
+import 'ui/views/welcome/welcome_view.dart';
+
+import 'package:stacked_services/stacked_services.dart';
+import 'app.locator.dart';
 
 void main() {
+  setupLocator();
   runApp(MyApp());
 }
 
@@ -25,7 +31,13 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         const Locale('pt', 'BR'),
       ],
-      home: HomeView(),
+      navigatorKey: locator<NavigationService>().navigatorKey,
+      initialRoute: '/welcome',
+      routes: {
+        '/welcome': (context) => const WelcomeView(),
+        '/register': (context) => const RegisterView(),
+        '/home': (context) => const HomeView(),
+      },
     );
   }
 }
