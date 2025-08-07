@@ -338,7 +338,7 @@ class HomeView extends StackedView<HomeViewModel> {
                               color: Colors.white.withOpacity(0.8),
                             ),
                           ),
-                          items: const [
+                          items: [
                             BottomNavigationBarItem(
                               icon: Icon(Icons.home, color: Colors.white),
                               label: 'Início',
@@ -356,7 +356,9 @@ class HomeView extends StackedView<HomeViewModel> {
                           selectedItemColor: Colors.white,
                           unselectedItemColor: Colors.white.withOpacity(0.8),
                           onTap: (index) {
-                            // Handle navigation
+                            if (index == 1) {
+                              viewModel.navigateToProfile();
+                            }
                           },
                         ),
                       ),

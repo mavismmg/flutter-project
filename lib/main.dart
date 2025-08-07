@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'ui/views/home/home_view.dart';
 import 'ui/views/register/register_view.dart';
 import 'ui/views/welcome/welcome_view.dart';
+import 'ui/views/profile/profile_view.dart';
 
 import 'package:stacked_services/stacked_services.dart';
 import 'app.locator.dart';
@@ -34,9 +35,10 @@ class MyApp extends StatelessWidget {
       navigatorKey: locator<NavigationService>().navigatorKey,
       initialRoute: '/welcome',
       routes: {
-        '/welcome': (context) => const WelcomeView(),
-        '/register': (context) => const RegisterView(),
-        '/home': (context) => const HomeView(),
+        '/welcome': (context) => WelcomeView(),
+        '/register': (context) => RegisterView(),
+        '/home': (context) => HomeView(),
+        '/profile-view': (context) => ProfileView(),
       },
     );
   }

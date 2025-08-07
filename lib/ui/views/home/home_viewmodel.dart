@@ -1,5 +1,7 @@
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked_flutter_project/app.locator.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
   int? selectedMood;
@@ -7,6 +9,11 @@ class HomeViewModel extends BaseViewModel {
   String lastMoodMessage = '';
   bool showMoodMessage = false;
   String? savedText;
+  final _navigationService = locator<NavigationService>();
+
+  void navigateToProfile() {
+    _navigationService.navigateTo('/profile-view');
+  }
 
   // Mood selection logic
   void onMoodSelected(int mood) {
