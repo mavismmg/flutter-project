@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'profile_viewmodel.dart';
 
+import '../../widgets/app_bottom_navigation_bar.dart';
+
 class ProfileView extends StackedView<ProfileViewModel> {
   const ProfileView({Key? key}) : super(key: key);
 
@@ -22,10 +24,9 @@ class ProfileView extends StackedView<ProfileViewModel> {
             // Campo para foto
             CircleAvatar(
               radius: 48,
-              backgroundImage: AssetImage(
-                  'assets/images/avatar_placeholder.png'), // Substitua pelo caminho da imagem do usuário
-              child: Icon(Icons.person,
-                  size: 48, color: Colors.white70), // Ícone de fallback
+              backgroundImage:
+                  AssetImage('assets/images/avatar_placeholder.png'),
+              child: Icon(Icons.person, size: 48, color: Colors.white70),
             ),
             const SizedBox(height: 24),
             // Informações pessoais
@@ -39,7 +40,6 @@ class ProfileView extends StackedView<ProfileViewModel> {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: 24),
-            // Outras informações podem ser adicionadas aqui
             ListTile(
               leading: Icon(Icons.cake),
               title: Text('Data de nascimento'),
@@ -47,6 +47,13 @@ class ProfileView extends StackedView<ProfileViewModel> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: AppBottomNavigationBar(
+        currentIndex: 1,
+        onTap: (index) {
+          if (index == 0) viewModel.navigateToHome();
+          // Adicione navegação para outras abas se necessário
+        },
       ),
     );
   }
