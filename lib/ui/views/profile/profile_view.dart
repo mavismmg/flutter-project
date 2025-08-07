@@ -24,8 +24,7 @@ class ProfileView extends StackedView<ProfileViewModel> {
             // Campo para foto
             CircleAvatar(
               radius: 48,
-              backgroundImage:
-                  AssetImage('assets/images/avatar_placeholder.png'),
+              backgroundImage: AssetImage(''),
               child: Icon(Icons.person, size: 48, color: Colors.white70),
             ),
             const SizedBox(height: 24),

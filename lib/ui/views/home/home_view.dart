@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'home_viewmodel.dart';
+import '../../widgets/app_bottom_navigation_bar.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
   const HomeView({Key? key}) : super(key: key);
@@ -304,65 +305,6 @@ class HomeView extends StackedView<HomeViewModel> {
                       ),
                     ),
                     const Spacer(),
-                    Container(
-                      height: 70,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(22),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.5),
-                            blurRadius: 8,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(22),
-                        child: BottomNavigationBar(
-                          backgroundColor: Colors.transparent,
-                          elevation: 0,
-                          showSelectedLabels: true,
-                          showUnselectedLabels: true,
-                          selectedFontSize: 12,
-                          unselectedFontSize: 12,
-                          selectedLabelStyle: GoogleFonts.notoSans(
-                            textStyle: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                          unselectedLabelStyle: GoogleFonts.notoSans(
-                            textStyle: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white.withOpacity(0.8),
-                            ),
-                          ),
-                          items: [
-                            BottomNavigationBarItem(
-                              icon: Icon(Icons.home, color: Colors.white),
-                              label: 'Início',
-                            ),
-                            BottomNavigationBarItem(
-                              icon: Icon(Icons.person, color: Colors.white),
-                              label: 'Perfil',
-                            ),
-                            BottomNavigationBarItem(
-                              icon: Icon(Icons.more_horiz, color: Colors.white),
-                              label: 'A definir',
-                            ),
-                          ],
-                          currentIndex: 0,
-                          selectedItemColor: Colors.white,
-                          unselectedItemColor: Colors.white.withOpacity(0.8),
-                          onTap: (index) {
-                            if (index == 1) {
-                              viewModel.navigateToProfile();
-                            }
-                          },
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -370,14 +312,19 @@ class HomeView extends StackedView<HomeViewModel> {
           ],
         ),
       ),
+      bottomNavigationBar: AppBottomNavigationBar(
+        currentIndex: 0,
+        onTap: (index) {
+          if (index == 1) viewModel.navigateToProfile();
+          // Adicione navegação para outras abas se necessário
+        },
+      ),
     );
   }
 
   @override
   HomeViewModel viewModelBuilder(BuildContext context) => HomeViewModel();
 }
-
-// Os widgets _DayFeelingInput, ChecklistItem e _OptionBox devem ser copiados da HomePage e adaptados para receber o viewModel quando necessário.
 
 class _DayFeelingInput extends StatefulWidget {
   final HomeViewModel viewModel;
