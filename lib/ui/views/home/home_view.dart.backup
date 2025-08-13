@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'home_viewmodel.dart';
-import '../../widgets/app_bottom_navigation_bar.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
   const HomeView({Key? key}) : super(key: key);
@@ -81,11 +80,11 @@ class HomeView extends StackedView<HomeViewModel> {
                       const SizedBox(height: 16),
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withValues(alpha: 0.8),
                           borderRadius: BorderRadius.circular(22),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.purple.withOpacity(0.08),
+                              color: Colors.purple.withAlpha((255 * 0.08).toInt()),
                               blurRadius: 12,
                               offset: const Offset(0, 4),
                             ),
@@ -142,7 +141,7 @@ class HomeView extends StackedView<HomeViewModel> {
                                     ? Container(
                                         padding: const EdgeInsets.all(12),
                                         decoration: BoxDecoration(
-                                          color: Colors.purple.withOpacity(0.08),
+                                          color: Colors.purple.withAlpha((255 * 0.08).toInt()),
                                           borderRadius: BorderRadius.circular(12),
                                         ),
                                         child: Text(
@@ -164,7 +163,7 @@ class HomeView extends StackedView<HomeViewModel> {
                                 borderRadius: BorderRadius.circular(12),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.purple.withOpacity(0.2),
+                                    color: Colors.purple.withAlpha((255 * 0.2).toInt()),
                                     blurRadius: 8,
                                     offset: const Offset(0, 4),
                                   ),
@@ -189,6 +188,7 @@ class HomeView extends StackedView<HomeViewModel> {
                                           ),
                                         ),
                                       ),
+                                      // Removido o Spacer daqui
                                       IconButton(
                                         icon: const Icon(Icons.add,
                                             color: Colors.purple),
@@ -243,7 +243,7 @@ class HomeView extends StackedView<HomeViewModel> {
                                                 'Nenhum lembrete adicionado.',
                                                 style: GoogleFonts.poppins(
                                                   color: Colors.purple
-                                                      .withOpacity(0.5),
+                                                      .withValues(alpha: 0.5),
                                                   fontSize: 14,
                                                 ),
                                               ),
@@ -343,13 +343,14 @@ class HomeView extends StackedView<HomeViewModel> {
           ),
         ),
       ),
-      bottomNavigationBar: AppBottomNavigationBar(
-        currentIndex: 0,
-        onTap: (index) {
-          if (index == 1) viewModel.navigateToProfile();
-        },
-      ),
     );
+    //   bottomNavigationBar: AppBottomNavigationBar(
+    //     currentIndex: 0,
+    //     onTap: (index) {
+    //       if (index == 1) viewModel.navigateToProfile();
+    //     },
+    //   ),
+    // );
   }
 
   @override
@@ -382,10 +383,10 @@ class _DayFeelingInputState extends State<_DayFeelingInput> {
       margin: const EdgeInsets.symmetric(vertical: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.yellow.withOpacity(0.12),
+        color: Colors.yellow.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: Colors.purple.withOpacity(0.18),
+          color: Colors.purple.withValues(alpha: 0.18),
           width: 1.2,
         ),
       ),
@@ -409,10 +410,10 @@ class _DayFeelingInputState extends State<_DayFeelingInput> {
                         ? widget.viewModel.savedText!
                         : 'Clique para escrever como você se sentiu hoje...',
                     style: GoogleFonts.poppins(
-                      color: Colors.purple.withOpacity(
+                      color: Colors.purple.withValues(alpha:
                           widget.viewModel.savedText != null &&
                                   widget.viewModel.savedText!.isNotEmpty
-                              ? 1.0
+                              ? 1
                               : 0.6),
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
@@ -555,11 +556,11 @@ class _ChecklistItemState extends State<ChecklistItem>
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           decoration: BoxDecoration(
             color: checked
-                ? Colors.purple.withOpacity(0.18)
-                : Colors.purple.withOpacity(0.10),
+                ? Colors.purple.withValues(alpha: 0.18)
+                : Colors.purple.withValues(alpha: 0.10),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
-              color: checked ? Colors.purple : Colors.purple.withOpacity(0.2),
+              color: checked ? Colors.purple : Colors.purple.withValues(alpha: 0.2),
               width: checked ? 2 : 1,
             ),
           ),
@@ -573,7 +574,7 @@ class _ChecklistItemState extends State<ChecklistItem>
                         size: 22,
                         key: ValueKey('checked'))
                     : Icon(Icons.radio_button_unchecked,
-                        color: Colors.purple.withOpacity(0.5),
+                        color: Colors.purple.withValues(alpha: 0.5),
                         size: 22,
                         key: const ValueKey('unchecked')),
               ),
@@ -635,16 +636,16 @@ class _OptionBox extends StatelessWidget {
       curve: Curves.easeInOut,
       decoration: BoxDecoration(
         color: isSelected
-            ? Colors.yellow.withOpacity(0.3)
-            : Colors.yellow.withOpacity(0.1),
+            ? Colors.yellow.withValues(alpha: 0.3)
+            : Colors.yellow.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: isSelected ? iconColor : Colors.black.withOpacity(0.2),
+          color: isSelected ? iconColor : Colors.black.withValues(alpha: 0.2),
           width: isSelected ? 2 : 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.purple.withOpacity(0.08),
+            color: Colors.purple.withAlpha((255 * 0.08).toInt()),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -655,7 +656,7 @@ class _OptionBox extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(18),
           onTap: onTap,
-          splashColor: iconColor.withOpacity(0.15),
+          splashColor: iconColor.withValues(alpha: 0.15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
